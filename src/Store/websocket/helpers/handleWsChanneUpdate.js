@@ -1,4 +1,4 @@
-import isArray from 'lodash/isArray'
+import _isArray from 'lodash/isArray'
 import uuid from 'uuid/v4'
 import { getChannelTypeById } from '../saga'
 import { ORDER_BOOK, TICKER, TRADES } from '../constants/wsChannelTypes'
@@ -8,31 +8,37 @@ import { tradesUpdate, tradesUpdateAll } from '../../trades/actions'
 
 
 function handleOrderBookUpdate(data, emitter) {
-  if (isArray(data[0])) {
+  if (_isArray(data[0])) {
     const orderBook = []
     data[0].forEach((order) => {
       const [price, count, amount] = order
-      orderBook.push({ price, count, amount })
+      orderBook.push({
+        price, count, amount, total: Math.abs(amount * count),
+      })
     })
     return emitter(orderBookUpdateAllRows(orderBook))
   }
   const [price, count, amount] = data
-  return emitter(orderBookUpdate({ price, count, amount }))
+  return emitter(orderBookUpdate({
+    price, count, amount, total: Math.abs(amount * count),
+  }))
 }
 
 
 function handleTradesUpdate(data, emitter) {
-  if (isArray(data[0])) {
+  if (_isArray(data[0])) {
     const trades = []
     data[0].forEach((trade) => {
       const [empty, timestamp, price, amount] = trade
-      trades.push({ timestamp, price, amount , key: uuid()})
+      trades.push({
+        timestamp, price, amount, key: uuid(),
+      })
     })
     return emitter(tradesUpdateAll(trades))
   }
   const [seq, id, timestamp, price, amount] = data
   return emitter(tradesUpdate({
-    seq, id, timestamp, price, amount, key: uuid()
+    seq, id, timestamp, price, amount, key: uuid(),
   }))
 }
 

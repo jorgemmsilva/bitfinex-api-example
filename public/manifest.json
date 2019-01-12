@@ -1,6 +1,6 @@
 {
   "short_name": "React App",
-  "name": "Sample React App",
+  "name": "Bitfinex API usage example",
   "icons": [
     {
       "src": "favicon.ico",

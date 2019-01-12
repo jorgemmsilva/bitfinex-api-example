@@ -4,7 +4,7 @@ import TradeRow from './TradeRow'
 import { StyledTradesTable } from './styled'
 
 const TradesTable = ({ trades }) => (
-  <StyledTradesTable border="0" cellpadding="0" cellspacing="0">
+  <StyledTradesTable>
     <thead>
       <tr>
         <td />

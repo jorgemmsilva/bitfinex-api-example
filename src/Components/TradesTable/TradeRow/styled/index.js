@@ -3,7 +3,7 @@ import { ExpandLess, ExpandMore } from '@material-ui/icons'
 import {
   TRADE_TABLE_TR_RED, TRADE_TABLE_TR_GREEN, TRADE_TABLE_INDICATOR_UP, TRADE_TABLE_INDICATOR_DOWN,
 } from '../../../../constants/colors'
-import { BUY } from '../../constants'
+import { BUY } from '../../../../constants/tradeSide'
 
 
 export const TradeTableRow = styled.tr`

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { eventChannel, delay } from 'redux-saga'
 import { put, call, take } from 'redux-saga/effects'
-import keys from 'lodash/keys'
+import _keys from 'lodash/keys'
 import { WS_CONNECT_SUCCESS, WS_CONNECT_PENDING, WS_CONNECT_FAILURE } from './actions'
 import { PING, SUBSCRIBE, UNSUBSCRIBE } from './constants/wsMessageEventTypes'
 import handleWsMessage from './helpers/handleWsMessage'
@@ -33,11 +33,11 @@ const subscribedChannels = {
   [TRADES]: [],
 }
 
-export function getChannelTypeById(chanId){
-  const channelTypes = keys(subscribedChannels)
+export function getChannelTypeById(chanId) {
+  const channelTypes = _keys(subscribedChannels)
   for (let i = 0; i < channelTypes.length; i++) {
     const channelType = channelTypes[i]
-    if(subscribedChannels[channelType].includes(chanId)){
+    if (subscribedChannels[channelType].includes(chanId)) {
       return channelType
     }
   }

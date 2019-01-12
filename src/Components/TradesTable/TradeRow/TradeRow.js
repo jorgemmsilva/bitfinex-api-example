@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 import { TradeTableRow, TradeIndicatorDown, TradeIndicatorUp } from './styled'
-import { BUY } from '../constants'
+import { SELL, BUY } from '../../../constants/tradeSide'
 
 
 const TradeRow = ({ timestamp, price, amount }) => {
-  const tradeSide = amount > 0 ? 1 : 0
+  const tradeSide = amount > 0 ? BUY : SELL
   return (
     <TradeTableRow tradeSide={tradeSide}>
       <td>{tradeSide === BUY ? <TradeIndicatorUp /> : <TradeIndicatorDown />}</td>
