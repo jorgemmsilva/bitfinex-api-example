@@ -13,14 +13,14 @@ function handleOrderBookUpdate(data, emitter) {
     data[0].forEach((order) => {
       const [price, count, amount] = order
       orderBook.push({
-        price, count, amount, total: Math.abs(amount * count),
+        price, count, amount, key: uuid(),
       })
     })
     return emitter(orderBookUpdateAllRows(orderBook))
   }
   const [price, count, amount] = data
   return emitter(orderBookUpdate({
-    price, count, amount, total: Math.abs(amount * count),
+    price, count, amount, total: Math.abs(amount * count), key: uuid(),
   }))
 }
 

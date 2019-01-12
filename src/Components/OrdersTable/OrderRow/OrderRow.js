@@ -7,7 +7,7 @@ const OrderRow = ({
 }) => (
   <OrderTableRow side={side} total={total} maxTotal={maxTotal}>
     <div>{count}</div>
-    <div>{Math.abs(amount.toLocaleString())}</div>
+    <div>{Math.abs(amount).toLocaleString()}</div>
     <div>{total.toLocaleString()}</div>
     <div>{price}</div>
   </OrderTableRow>
@@ -18,7 +18,7 @@ OrderRow.propTypes = {
   count: PropTypes.number.isRequired,
   amount: PropTypes.number.isRequired,
   total: PropTypes.number.isRequired,
-  side: PropTypes.bool.isRequired,
+  side: PropTypes.number.isRequired,
   maxTotal: PropTypes.number.isRequired,
 }
 

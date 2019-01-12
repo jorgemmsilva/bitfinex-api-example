@@ -1,3 +1,4 @@
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import OrderRow from './OrderRow'
@@ -13,7 +14,7 @@ const OrdersTable = ({ orders, side, maxTotal }) => (
     </OrdersTableHeader>
     <OrdersTableBody>
       {orders.map((order => (
-        <OrderRow {...order} side={side} maxTotal={maxTotal} />
+        <OrderRow {...order} side={side} maxTotal={maxTotal} key={order.key} />
       )))}
     </OrdersTableBody>
   </StyledOrdersTable>

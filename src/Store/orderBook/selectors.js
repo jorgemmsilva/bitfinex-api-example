@@ -1,14 +1,38 @@
 import { createSelector } from 'reselect'
-import _max from 'lodash/max'
-import _maxBy from 'lodash/maxBy'
+import _last from 'lodash/last'
 
 export const getOrderBook = state => state.orderBook
+export const getOrderBookBuy = state => state.orderBook.buy
+export const getOrderBookSell = state => state.orderBook.sell
 
-export const getOrderBookMaxTotal = createSelector(
-  [getOrderBook],
-  ({ buy, sell }) => {
-    const buyMax = _maxBy(buy, 'total') || 0
-    const sellMax = _maxBy(sell, 'total') || 0
-    return _max([buyMax.total, sellMax.total])
-  },
+
+const calculateOrdersWithTotals = (orders) => {
+  let cumulativeTotal = 0
+  return orders.map((order) => {
+    cumulativeTotal += Math.abs(order.amount) * order.count
+    return {
+      ...order,
+      total: cumulativeTotal,
+    }
+  })
+}
+
+export const getOrderBookBuyOrders = createSelector(
+  [getOrderBookBuy],
+  calculateOrdersWithTotals,
+)
+
+export const getOrderBookSellOrders = createSelector(
+  [getOrderBookSell],
+  calculateOrdersWithTotals,
+)
+
+export const getOrderBookMaxBuyTotal = createSelector(
+  [getOrderBookBuyOrders],
+  orders => (orders && orders.length ? _last(orders).total : 0),
+)
+
+export const getOrderBookMaxSellTotal = createSelector(
+  [getOrderBookSellOrders],
+  orders => (orders && orders.length ? _last(orders).total : 0),
 )

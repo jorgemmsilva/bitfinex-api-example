@@ -5,17 +5,24 @@ import {
 import { BUY } from '../../../../constants/tradeSide'
 
 
-export const OrderTableRow = styled.div`
-  background: ${({ side, total, maxTotal }) => {
+export const OrderTableRow = styled.div.attrs(
+  ({ side, total, maxTotal }) => {
     const barPerc = (total / maxTotal) * 100
-    return side === BUY
-      ? `linear-gradient(90deg,
+
+    const background = (
+      side === BUY
+        ? `linear-gradient(90deg,
       ${WIDGET_BACKGROUND} ${(100 - barPerc).toFixed(0)}%,
-      ${ORDER_BOOK_GREEN_BAR} ${barPerc.toFixed(0)}%);`
-      : `linear-gradient(90deg,
+      ${ORDER_BOOK_GREEN_BAR} ${barPerc.toFixed(0)}%)`
+        : `linear-gradient(90deg,
       ${ORDER_BOOK_RED_BAR} ${barPerc.toFixed(0)}%,
-      ${WIDGET_BACKGROUND} ${(100 - barPerc).toFixed(0)}%);`
-  }};
+      ${WIDGET_BACKGROUND} ${(100 - barPerc).toFixed(0)}%)`
+    )
+    return {
+      style: { background },
+    }
+  },
+)`
   flex-direction: ${({ side }) => (
     side === BUY ? 'row-reverse' : 'row'
   )};

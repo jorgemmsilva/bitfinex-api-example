@@ -4,33 +4,33 @@ import { OrderBookWidgetWrapper, WidgetTitle, OrdersTableWrapper } from '../../C
 import OrdersTable from '../../Components/OrdersTable'
 import { BUY, SELL } from '../../constants/tradeSide'
 
-
-const OrderBook = ({ orders, maxTotal }) => (
+const OrderBook = ({
+  buyOrders, sellOrders, maxBuyTotal, maxSellTotal,
+}) => (
   <OrderBookWidgetWrapper>
     <WidgetTitle>ORDERS</WidgetTitle>
     <OrdersTableWrapper>
-      <OrdersTable orders={orders.buy} side={BUY} maxTotal={maxTotal} />
-      <OrdersTable orders={orders.sell} side={SELL} maxTotal={maxTotal} />
+      <OrdersTable orders={buyOrders} side={BUY} maxTotal={maxBuyTotal} />
+      <OrdersTable orders={sellOrders} side={SELL} maxTotal={maxSellTotal} />
     </OrdersTableWrapper>
   </OrderBookWidgetWrapper>
 )
 
 OrderBook.propTypes = {
-  orders: PropTypes.shape({
-    buy: PropTypes.arrayOf(PropTypes.shape({
-      price: PropTypes.number.isRequired,
-      count: PropTypes.number.isRequired,
-      amount: PropTypes.number.isRequired,
-      total: PropTypes.number.isRequired,
-    })).isRequired,
-    sell: PropTypes.arrayOf(PropTypes.shape({
-      price: PropTypes.number.isRequired,
-      count: PropTypes.number.isRequired,
-      amount: PropTypes.number.isRequired,
-      total: PropTypes.number.isRequired,
-    })).isRequired,
-  }).isRequired,
-  maxTotal: PropTypes.number.isRequired,
+  buyOrders: PropTypes.arrayOf(PropTypes.shape({
+    price: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
+    amount: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+  })).isRequired,
+  sellOrders: PropTypes.arrayOf(PropTypes.shape({
+    price: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
+    amount: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+  })).isRequired,
+  maxSellTotal: PropTypes.number.isRequired,
+  maxBuyTotal: PropTypes.number.isRequired,
 }
 
 export default OrderBook
