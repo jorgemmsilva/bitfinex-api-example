@@ -1,8 +1,5 @@
 
-import {
-  ORDER_BOOK_UPDATE,
-  ORDER_BOOK_UPDATE_ALL_ROWS,
-} from './actions'
+import { ORDER_BOOK_UPDATE, ORDER_BOOK_UPDATE_ALL_ROWS } from './actions'
 
 const initialState = []
 

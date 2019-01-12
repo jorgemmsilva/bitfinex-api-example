@@ -16,7 +16,10 @@ const PairSelect = ({ selectedPair, changeSelectedPair }) => (
 )
 
 PairSelect.propTypes = {
-  selectedPair: PropTypes.string.isRequired,
+  selectedPair: PropTypes.shape({
+    value: PropTypes.string,
+    label: PropTypes.string,
+  }).isRequired,
   changeSelectedPair: PropTypes.func.isRequired,
 }
 

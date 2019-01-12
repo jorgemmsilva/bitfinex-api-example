@@ -6,13 +6,7 @@ import {
 } from './styled'
 
 const Ticker = ({
-  pair,
-  dailyChange,
-  dailyChangePerc,
-  lastPrice,
-  volume,
-  high,
-  low,
+  pair, dailyChange, dailyChangePerc, lastPrice, volume, high, low,
 }) => (
   <TickerWrapper>
     <TickerRow>

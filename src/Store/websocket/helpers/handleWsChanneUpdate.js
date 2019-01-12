@@ -1,9 +1,10 @@
 import isArray from 'lodash/isArray'
+import uuid from 'uuid/v4'
 import { getChannelTypeById } from '../saga'
 import { ORDER_BOOK, TICKER, TRADES } from '../constants/wsChannelTypes'
 import { tickerUpdate } from '../../ticker/actions'
 import { orderBookUpdate, orderBookUpdateAllRows } from '../../orderBook/actions'
-import { tradesUpdate } from '../../trades/actions'
+import { tradesUpdate, tradesUpdateAll } from '../../trades/actions'
 
 
 function handleOrderBookUpdate(data, emitter) {
@@ -17,6 +18,22 @@ function handleOrderBookUpdate(data, emitter) {
   }
   const [price, count, amount] = data
   return emitter(orderBookUpdate({ price, count, amount }))
+}
+
+
+function handleTradesUpdate(data, emitter) {
+  if (isArray(data[0])) {
+    const trades = []
+    data[0].forEach((trade) => {
+      const [empty, timestamp, price, amount] = trade
+      trades.push({ timestamp, price, amount , key: uuid()})
+    })
+    return emitter(tradesUpdateAll(trades))
+  }
+  const [seq, id, timestamp, price, amount] = data
+  return emitter(tradesUpdate({
+    seq, id, timestamp, price, amount, key: uuid()
+  }))
 }
 
 function handleTickerUpdate(data, emitter) {
@@ -46,24 +63,6 @@ function handleTickerUpdate(data, emitter) {
   }))
 }
 
-function handleTradesUpdate(data, emitter) {
-  return null
-  const [
-    seq,
-    id,
-    timestamp,
-    price,
-    amount,
-  ] = data
-  return emitter(tradesUpdate({
-    seq,
-    id,
-    timestamp,
-    price,
-    amount,
-  }))
-}
-
 export default function handleWsChanneUpdate(msg, emitter) {
   const [chanId, ...data] = msg
 
@@ -73,10 +72,10 @@ export default function handleWsChanneUpdate(msg, emitter) {
   switch (channelType) {
     case ORDER_BOOK:
       return handleOrderBookUpdate(data, emitter)
-    case TICKER:
-      return handleTickerUpdate(data, emitter)
     case TRADES:
       return handleTradesUpdate(data, emitter)
+    case TICKER:
+      return handleTickerUpdate(data, emitter)
     default:
   }
 }
