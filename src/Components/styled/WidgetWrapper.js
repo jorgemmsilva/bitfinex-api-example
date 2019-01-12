@@ -9,4 +9,11 @@ export const WidgetWrapper = styled.div`
 
 export const TradesWidgetWrapper = styled(WidgetWrapper)`
   width: 300px;
+  margin-right: 6px;
+`
+
+export const OrderBookWidgetWrapper = styled(WidgetWrapper)`
+  flex-grow: 1;
+  margin-left: 6px;
+  margin-right: 6px;
 `

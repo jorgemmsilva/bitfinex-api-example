@@ -1,5 +1,5 @@
 import React from 'react'
-import { LayoutWrapper, LayoutTop } from './styled'
+import { LayoutWrapper, LayoutTop, LayoutBottom } from './styled'
 import PairSelect from '../PairSelect'
 import Ticker from '../Ticker'
 import OrderBook from '../OrderBook'
@@ -11,8 +11,10 @@ const Layout = () => (
       <PairSelect />
       <Ticker />
     </LayoutTop>
-    <OrderBook />
-    <Trades />
+    <LayoutBottom>
+      <OrderBook />
+      <Trades />
+    </LayoutBottom>
   </LayoutWrapper>
 )
 
