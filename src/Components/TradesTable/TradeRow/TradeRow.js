@@ -1,14 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import moment from 'moment'
+import { TradeTableRow, TradeIndicatorDown, TradeIndicatorUp } from './styled'
+import { BUY } from '../constants'
 
 
-const TradeRow = ({ timestamp, price, amount }) => (
-  <tr>
-    <td>{timestamp}</td>
-    <td>{price}</td>
-    <td>{amount}</td>
-  </tr>
-)
+const TradeRow = ({ timestamp, price, amount }) => {
+  const tradeSide = amount > 0 ? 1 : 0
+  return (
+    <TradeTableRow tradeSide={tradeSide}>
+      <td>{tradeSide === BUY ? <TradeIndicatorUp /> : <TradeIndicatorDown />}</td>
+      <td>{moment.unix(timestamp).format('HH:mm:ss')}</td>
+      <td>{price}</td>
+      <td>{Math.abs(amount)}</td>
+    </TradeTableRow>
+  )
+}
 
 TradeRow.propTypes = {
   timestamp: PropTypes.number.isRequired,
