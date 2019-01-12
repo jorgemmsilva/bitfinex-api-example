@@ -1,7 +1,7 @@
 import React from 'react'
 import { LayoutWrapper } from './styled'
 import PairSelect from '../PairSelect'
-import Ticker from '../Ticker/Ticker'
+import Ticker from '../Ticker'
 import OrderBook from '../OrderBook'
 import Trades from '../Trades'
 

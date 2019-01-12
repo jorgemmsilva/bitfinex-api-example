@@ -1,0 +1,6 @@
+export const BACKGROUND = '#283941'
+export const WIDGET_BACKGROUND = '#19262e'
+export const FONT_LIGHT_GREY = '#A4A9AC'
+export const FONT_WHITE = '#FBFCFE'
+export const FONT_RED = '#aa6064'
+export const FONT_GREEN = '#7a9c4a'

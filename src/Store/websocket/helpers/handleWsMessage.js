@@ -1,10 +1,10 @@
+/* eslint-disable no-console */
 import {
   INFO, PONG, SUBSCRIBED, UNSUBSCRIBED,
 } from '../constants/wsMessageEventTypes'
 import handleWsChanneUpdate from './handleWsChanneUpdate'
 import { updateChannelSubscription } from '../saga'
 
-/* eslint-disable no-console */
 export default function handleWsMessage(emitter, clearWsTimeout) {
   return (payload) => {
     let msg = null
@@ -14,7 +14,6 @@ export default function handleWsMessage(emitter, clearWsTimeout) {
     } catch (e) {
       console.warn(`Error parsing : ${payload}`)
     }
-    console.log('received msg: ', msg)
 
     if (msg) {
       switch (msg.event) {
@@ -33,9 +32,3 @@ export default function handleWsMessage(emitter, clearWsTimeout) {
     }
   }
 }
-
-
-// chanId: 50987
-// channel: "ticker"
-// event: "subscribed"
-// pair: "LTCUSD"

@@ -47,6 +47,7 @@ function handleTickerUpdate(data, emitter) {
 }
 
 function handleTradesUpdate(data, emitter) {
+  return null
   const [
     seq,
     id,

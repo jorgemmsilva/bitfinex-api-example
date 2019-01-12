@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
+import {
+  TickerPrice, TickerWrapper, TickerPair, TickerRow,
+  TickerDailyChange,
+} from './styled'
 
 const Ticker = ({
-  bid,
-  bidSize,
-  ask,
-  askSize,
+  pair,
   dailyChange,
   dailyChangePerc,
   lastPrice,
@@ -14,21 +14,42 @@ const Ticker = ({
   high,
   low,
 }) => (
-  <div />
+  <TickerWrapper>
+    <TickerRow>
+      <TickerPair>{pair}</TickerPair>
+      <TickerPrice>{lastPrice}</TickerPrice>
+    </TickerRow>
+    <TickerRow>
+      <span>{`VOL: ${volume.toLocaleString()} USD`}</span>
+      <TickerDailyChange>
+        {`${dailyChange.toLocaleString()} (${dailyChangePerc}%)`}
+      </TickerDailyChange>
+    </TickerRow>
+    <TickerRow>
+      <span>{`LOW: ${low}`}</span>
+      <span>{`HIGH: ${high}`}</span>
+    </TickerRow>
+  </TickerWrapper>
 )
 
-Ticker.propTypes = {
-  bid: PropTypes.float,
-  bidSize: PropTypes.float,
-  ask: PropTypes.float,
-  askSize: PropTypes.float,
-  dailyChange: PropTypes.float,
-  dailyChangePerc: PropTypes.float,
-  lastPrice: PropTypes.float,
-  volume: PropTypes.float,
-  high: PropTypes.float,
-  low: PropTypes.float,
+Ticker.defaultProps = {
+  pair: '',
+  dailyChange: 0,
+  dailyChangePerc: 0,
+  lastPrice: 0,
+  volume: 0,
+  high: 0,
+  low: 0,
+}
 
+Ticker.propTypes = {
+  pair: PropTypes.string,
+  dailyChange: PropTypes.number,
+  dailyChangePerc: PropTypes.number,
+  lastPrice: PropTypes.number,
+  volume: PropTypes.number,
+  high: PropTypes.number,
+  low: PropTypes.number,
 }
 
 export default Ticker
