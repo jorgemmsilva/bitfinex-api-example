@@ -11,10 +11,10 @@ export const OrderTableRow = styled.div.attrs(
 
     const background = (
       side === BUY
-        ? `linear-gradient(90deg,
+        ? `linear-gradient(to right,
       ${WIDGET_BACKGROUND} ${(100 - barPerc).toFixed(0)}%,
       ${ORDER_BOOK_GREEN_BAR} ${barPerc.toFixed(0)}%)`
-        : `linear-gradient(90deg,
+        : `linear-gradient(to right,
       ${ORDER_BOOK_RED_BAR} ${barPerc.toFixed(0)}%,
       ${WIDGET_BACKGROUND} ${(100 - barPerc).toFixed(0)}%)`
     )

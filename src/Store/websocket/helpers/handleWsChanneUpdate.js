@@ -20,7 +20,7 @@ function handleOrderBookUpdate(data, emitter) {
   }
   const [price, count, amount] = data
   return emitter(orderBookUpdate({
-    price, count, amount, total: Math.abs(amount * count), key: uuid(),
+    price, count, amount, key: uuid(),
   }))
 }
 
