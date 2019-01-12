@@ -1,7 +1,6 @@
 import {
   PAIRS_LOAD_PENDING,
   PAIRS_LOAD_SUCCESS,
-  PAIRS_LOAD_FAILURE,
   PAIRS_CHANGE_SELECTED,
 } from './actions'
 

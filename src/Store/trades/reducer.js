@@ -1,5 +1,7 @@
 import { TRADES_UPDATE, TRADES_UPDATE_ALL } from './actions'
 
+const MAX_TRADES_LENGTH = 25
+
 const initialState = []
 
 export default function reducer(state = initialState, action) {
@@ -10,9 +12,9 @@ export default function reducer(state = initialState, action) {
       ]
     case TRADES_UPDATE:
       return [
-        ...state,
         action.payload,
-      ]
+        ...state,
+      ].slice(0, MAX_TRADES_LENGTH)
     default:
       return state
   }

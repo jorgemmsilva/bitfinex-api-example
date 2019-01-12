@@ -8,7 +8,6 @@ import { BUY } from '../../../../constants/tradeSide'
 export const OrderTableRow = styled.div`
   background: ${({ side, total, maxTotal }) => {
     const barPerc = (total / maxTotal) * 100
-    debugger
     return side === BUY
       ? `linear-gradient(90deg,
       ${WIDGET_BACKGROUND} ${(100 - barPerc).toFixed(0)}%,
@@ -22,6 +21,7 @@ export const OrderTableRow = styled.div`
   )};
   display: flex;
   justify-content: space-evenly;
+  height: 20px;
   > div {
     width: 100%
   }

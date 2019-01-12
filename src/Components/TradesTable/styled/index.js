@@ -6,4 +6,7 @@ export const StyledTradesTable = styled.table.attrs({
 })`
   width: 100%;
   text-align: center;
+  td {
+    padding: 0;
+  }
 `

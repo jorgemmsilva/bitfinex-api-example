@@ -1,7 +1,13 @@
 # Bitfinex Websocket API usage example
 
+
+
+## Description
 Implementation of a user interface to display data from a trading pair using Bitfinex websocket API
 
 resilient WS connection with a visual indicator of the ws status on the top right of the page
+ws connection will attempt to reconnect automatically if connection is dropped
 
-endpoint is configurable in `.env` file
+ws and api endpoints are configurable in `.env` file
+
+## What could be improved

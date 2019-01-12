@@ -29,7 +29,7 @@ function handleTradesUpdate(data, emitter) {
   if (_isArray(data[0])) {
     const trades = []
     data[0].forEach((trade) => {
-      const [empty, timestamp, price, amount] = trade
+      const [, timestamp, price, amount] = trade
       trades.push({
         timestamp, price, amount, key: uuid(),
       })
