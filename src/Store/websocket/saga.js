@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { eventChannel, delay } from 'redux-saga'
 import { put, call, take } from 'redux-saga/effects'
-import {keys} from 'lodash-es'
+import keys from 'lodash/keys'
 import { WS_CONNECT_SUCCESS, WS_CONNECT_PENDING, WS_CONNECT_FAILURE } from './actions'
 import { PING, SUBSCRIBE, UNSUBSCRIBE } from './constants/wsMessageEventTypes'
 import handleWsMessage from './helpers/handleWsMessage'

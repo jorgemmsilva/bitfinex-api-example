@@ -2,15 +2,13 @@ import {
   TRADES_UPDATE,
 } from './actions'
 
-const initialState = {
-
-}
+const initialState = {}
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case TRADES_UPDATE:
       return {
-        ...state,
+        ...action.payload,
       }
     default:
       return state

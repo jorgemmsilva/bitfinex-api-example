@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 
 
 const OrderBook = ({ }) => (
-  <div />
+  <div >
+    Order Book
+  </div>
 )
 
 OrderBook.propTypes = {

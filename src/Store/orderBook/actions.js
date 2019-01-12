@@ -7,6 +7,6 @@ export const orderBookUpdate = payload => ({
 })
 
 export const orderBookUpdateAllRows = payload => ({
-  type: ORDER_BOOK_UPDATE,
+  type: ORDER_BOOK_UPDATE_ALL_ROWS,
   payload,
 })

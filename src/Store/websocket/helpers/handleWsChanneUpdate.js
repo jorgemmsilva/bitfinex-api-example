@@ -1,4 +1,4 @@
-import { isArray } from 'lodash-es'
+import isArray from 'lodash/isArray'
 import { getChannelTypeById } from '../saga'
 import { ORDER_BOOK, TICKER, TRADES } from '../constants/wsChannelTypes'
 import { tickerUpdate } from '../../ticker/actions'
@@ -9,7 +9,7 @@ import { tradesUpdate } from '../../trades/actions'
 function handleOrderBookUpdate(data, emitter) {
   if (isArray(data[0])) {
     const orderBook = []
-    data.forEach((order) => {
+    data[0].forEach((order) => {
       const [price, count, amount] = order
       orderBook.push({ price, count, amount })
     })
@@ -65,6 +65,8 @@ function handleTradesUpdate(data, emitter) {
 
 export default function handleWsChanneUpdate(msg, emitter) {
   const [chanId, ...data] = msg
+
+  if (data[0] === 'hb') { return } // TODO handle channel haeartbeat
 
   const channelType = getChannelTypeById(chanId)
   switch (channelType) {
