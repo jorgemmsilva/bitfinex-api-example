@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly when connected 1`] = `
+<styled.div>
+  <Styled(pure(CheckIcon)) />
+</styled.div>
+`;
+
+exports[`renders correctly when connecting 1`] = `
+<styled.div>
+  <Styled(pure(AutorenewIcon)) />
+</styled.div>
+`;
+
+exports[`renders correctly when disconnected 1`] = `
+<styled.div>
+  <Styled(pure(CloseIcon)) />
+</styled.div>
+`;
